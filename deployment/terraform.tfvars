@@ -1,5 +1,5 @@
 azuread_groups = [
-  "az-ccoe-github",
-  "az-approver",
-  "az-cloudesk",
+  "az-ccoe01",
+  "az-approver01",
+  "az-cloud01",
 ]
