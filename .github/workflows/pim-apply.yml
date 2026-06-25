@@ -13,9 +13,18 @@ permissions:
   contents: read
 
 jobs:
- Deployment:
-   name: Terraform Apply Plan
-   uses: NizamORG/Terraform-reusable/.github/workflows/terraform-apply.yml@main
-   secrets: inherit
-   with:
-    workingDirectory: ./Deployment
+  Group-Deployment:
+    name: Terraform Apply Plan
+    uses: NizamORG/Terraform-reusable/.github/workflows/terraform-apply.yml@main
+    secrets: inherit
+    with:
+      workingDirectory: ./deployment
+      terraformArgs: "-target=module.aad_groups_final.module.aad_groups"
+  Role-Assignment:
+    needs: Group-Deployment
+    name: Terraform Apply Plan
+    uses: NizamORG/Terraform-reusable/.github/workflows/terraform-apply.yml@main
+    secrets: inherit
+    with:
+      workingDirectory: ./deployment
+      terraformArgs: "-target=module.aad_groups_final.module.aad_role"
