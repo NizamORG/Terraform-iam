@@ -1,0 +1,20 @@
+name: GroupDeployment PR
+
+on: 
+ pull_request:
+   types: [opened, synchronize, reopened, edited]
+   paths:
+    - ".github/workflows/pim-pr.yml"
+    - "deployment/**"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+ Deployment:
+  name: Terraform Plan PR
+  uses: NizamORG/Terraform-reusable/.github/workflows/terraform-pr.yml@main
+  secrets: inherit
+  with:
+   workingDirectory: ./deployment
