@@ -18,3 +18,4 @@ jobs:
   secrets: inherit
   with:
    workingDirectory: ./deployment
+   terraformArgs: "-target=module.aad_groups_final.module.aad_groups"
